@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
+use GuzzleHttp\Handler\Proxy;
 use Illuminate\Support\Str;
 
 class ProjectController extends Controller
@@ -39,6 +40,9 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
+        // $val_data = $request->validated();
+        // $project = Project::create($val_data);
+        // return to_route('index');
     }
 
     /**
