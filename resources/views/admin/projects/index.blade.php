@@ -22,11 +22,12 @@
                 <td>{{$project->title}}</td>
                 <td>{{$project->slug}}</td>
                 <td>{{$project->description}}</td>
-                <td>
-                    <a class="btn btn-primary btn-sm" href="{{route('admin.projects.show', $project->slug)}}" role="button"><i class="fa fa-eye fa-sm fa-fw" aria-hidden="true"></i>
+                <td class="d-flex flex-column">
+                    <a class="btn btn-primary btn-sm my-1" href="{{route('admin.projects.show', $project->slug)}}" role="button"><i class="fa fa-eye fa-sm fa-fw" aria-hidden="true"></i>
                     </a>
-                    <i class="fa fa-pencil fa-sm fa-fw" aria-hidden="true"></i>
-                    <i class="fa fa-trash fa-sm fa-fw" aria-hidden="true"></i>
+                    <a class="btn btn-secondary btn-sm my-1" href="{{route('admin.projects.edit', $project->slug)}}" role="button"><i class="fa fa-pencil fa-sm fa-fw" aria-hidden="true"></i>
+                    </a>
+                    <a class="btn btn-danger btn-sm my-1" href="#" role="button"><i class="fa fa-trash fa-sm fa-fw" aria-hidden="true"></i></a>
                 </td>
             </tr>
             @empty

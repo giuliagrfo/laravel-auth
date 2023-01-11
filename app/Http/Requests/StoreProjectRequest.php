@@ -28,4 +28,12 @@ class StoreProjectRequest extends FormRequest
             'description' => 'nullable|max:300'
         ];
     }
+    public function messages()
+    {
+        return [
+            'title.required' => 'Campo obbligatorio',
+            'title.max' => 'Il titolo deve essere di massimo :max caratteri',
+            'description.max' => 'La descrizione deve essere di massimo :max caratteri',
+        ];
+    }
 }

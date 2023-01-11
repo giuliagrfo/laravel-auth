@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
-use GuzzleHttp\Handler\Proxy;
 
 class ProjectController extends Controller
 {
@@ -66,7 +65,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        return view('admin.projects.edit', compact('project'));
     }
 
     /**
@@ -78,7 +77,12 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        //
+        $val_data = $request->validated();
+
+        $project_slug = Project::createSlug($val_data['title']);
+        $val_data['slug'] = $project_slug;
+        $project->update($val_data);
+        return to_route('admin.projects.index')->with('message', 'Project modified');
     }
 
     /**
@@ -89,6 +93,6 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $project->delete();
     }
 }
