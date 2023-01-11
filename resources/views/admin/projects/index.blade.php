@@ -23,7 +23,8 @@
                 <td>{{$project->slug}}</td>
                 <td>{{$project->description}}</td>
                 <td>
-                    <i class="fa fa-eye fa-sm fa-fw" aria-hidden="true"></i>
+                    <a class="btn btn-primary btn-sm" href="{{route('admin.projects.show', $project->slug)}}" role="button"><i class="fa fa-eye fa-sm fa-fw" aria-hidden="true"></i>
+                    </a>
                     <i class="fa fa-pencil fa-sm fa-fw" aria-hidden="true"></i>
                     <i class="fa fa-trash fa-sm fa-fw" aria-hidden="true"></i>
                 </td>

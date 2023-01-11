@@ -7,7 +7,6 @@ use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
 use GuzzleHttp\Handler\Proxy;
-use Illuminate\Support\Str;
 
 class ProjectController extends Controller
 {
@@ -40,9 +39,12 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        // $val_data = $request->validated();
-        // $project = Project::create($val_data);
-        // return to_route('index');
+        $val_data = $request->validated();
+        $project_slug = Project::createSlug($val_data['title']);
+        $val_data['slug'] = $project_slug;
+        //dd($val_data);
+        Project::create($val_data);
+        return to_route('admin.projects.index')->with('message', 'Project added successfully');
     }
 
     /**
@@ -53,7 +55,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        //
+        return view('admin.projects.show', compact('project'));
     }
 
     /**
