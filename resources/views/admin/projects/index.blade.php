@@ -10,6 +10,7 @@
                 <th scope="col">ID</th>
                 <th scope="col">TITLE</th>
                 <th scope="col">SLUG</th>
+                <th scope="col">IMAGE</th>
                 <th scope="col">DESCRIPTION</th>
                 <th scope="col">ACTIONS</th>
 
@@ -21,6 +22,8 @@
                 <td scope="row">{{$project->id}}</td>
                 <td>{{$project->title}}</td>
                 <td>{{$project->slug}}</td>
+                <td><img src="{{asset('storage/' . $project->cover_image)}}" alt=""></td>
+
                 <td>{{$project->description}}</td>
                 <td class="d-flex flex-column">
                     <a class="btn btn-primary btn-sm my-1" href="{{route('admin.projects.show', $project->slug)}}" role="button"><i class="fa fa-eye fa-sm fa-fw" aria-hidden="true"></i>
