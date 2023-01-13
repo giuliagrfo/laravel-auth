@@ -3,7 +3,7 @@
 @section('content')
 <h1>Edit Project</h1>
 @include('partials.error')
-<form action="{{route('admin.projects.update', $project->slug)}}" method="post">
+<form action="{{route('admin.projects.update', $project->slug)}}" method="post" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div class="mb-3">
@@ -11,7 +11,14 @@
         <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" placeholder="" aria-describedby="titleHelper" value="{{old('title', $project->title)}}">
         <small id="titleHelper" class="text-muted">Add title with max 100 characters</small>
     </div>
-
+    <div class="mb-3">
+        <img src="{{asset('storage/' . $project->cover_image)}}" alt="">
+        <div>
+            <label for="image" class="form-label">Image</label>
+            <input type="file" name="image" id="image" class="form-control" placeholder="" aria-describedby="imageHelper">
+            <small id="imageHelper" class="text-muted">Replace image</small>
+        </div>
+    </div>
     <div class="mb-3">
         <label for="description" class="form-label">Description</label>
         <textarea type="text" name="description" id="description" class="form-control @error('description') is-invalid @enderror" placeholder="" aria-describedby="descriptionHelper">{{old('description', $project->description)}}</textarea>
