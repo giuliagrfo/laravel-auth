@@ -41,9 +41,11 @@ class ProjectController extends Controller
     {
         $val_data = $request->validated();
 
-        $cover_image = Storage::put('uploads', $val_data['cover_image']);
-        $val_data['cover_image'] = $cover_image;
+        if ($request->hasFile('cover_image')) {
 
+            $cover_image = Storage::put('uploads', $val_data['cover_image']);
+            $val_data['cover_image'] = $cover_image;
+        }
         $project_slug = Project::createSlug($val_data['title']);
         $val_data['slug'] = $project_slug;
         //dd($val_data);
@@ -83,8 +85,13 @@ class ProjectController extends Controller
     public function update(UpdateProjectRequest $request, Project $project)
     {
         $val_data = $request->validated();
-        $cover_image = Storage::put('uploads', $val_data['cover_image']);
-        $val_data['cover_image'] = $cover_image;
+        if ($request->hasFile('cover_image')) {
+            if ($project->cover_image) {
+                Storage::delete($project->cover_image);
+            }
+            $cover_image = Storage::put('uploads', $val_data['cover_image']);
+            $val_data['cover_image'] = $cover_image;
+        }
 
         $project_slug = Project::createSlug($val_data['title']);
         $val_data['slug'] = $project_slug;
@@ -100,6 +107,9 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        if ($project->cover_image) {
+            Storage::delete($project->cover_image);
+        }
         $project->delete();
         return to_route('admin.projects.index');
     }

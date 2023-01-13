@@ -22,7 +22,7 @@
                 <td scope="row">{{$project->id}}</td>
                 <td>{{$project->title}}</td>
                 <td>{{$project->slug}}</td>
-                <td><img src="{{asset('storage/' . $project->cover_image)}}" alt=""></td>
+                <td><img class="w-75" src="{{asset('storage/' . $project->cover_image)}}" alt=""></td>
 
                 <td>{{$project->description}}</td>
                 <td class="d-flex flex-column">

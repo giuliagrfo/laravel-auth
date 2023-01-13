@@ -12,11 +12,11 @@
         <small id="titleHelper" class="text-muted">Add title with max 100 characters</small>
     </div>
     <div class="mb-3">
-        <img src="{{asset('storage/' . $project->cover_image)}}" alt="">
+        <img class="w-25" src="{{asset('storage/' . $project->cover_image)}}" alt="">
         <div>
-            <label for="image" class="form-label">Image</label>
-            <input type="file" name="image" id="image" class="form-control" placeholder="" aria-describedby="imageHelper">
-            <small id="imageHelper" class="text-muted">Replace image</small>
+            <label for="cover_image" class="form-label">Image</label>
+            <input type="file" name="cover_image" id="cover_image" class="form-control @error('cover_image') is-invalid @enderror" placeholder="" aria-describedby="cover_imageHelper">
+            <small id="cover_imageHelper" class="text-muted">Replace image</small>
         </div>
     </div>
     <div class="mb-3">
