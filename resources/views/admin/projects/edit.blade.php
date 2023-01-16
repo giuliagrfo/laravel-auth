@@ -25,8 +25,7 @@
             <option value="">No Type</option>
 
             @forelse ($types as $type )
-            <!-- Check if the project has a type assigned or not                                    👇 -->
-            <option value="{{$type->id}}" {{ $type->id == old('type_id',  $project->type ? $project->type->id : '') ? 'selected' : '' }}>
+            <option value="{{$type->id}}" {{ old('type_id') == $type->id ? $project->type->id : ''}}>
                 {{$type->name}}
             </option>
             @empty
