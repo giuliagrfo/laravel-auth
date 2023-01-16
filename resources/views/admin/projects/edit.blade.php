@@ -22,15 +22,15 @@
     <div class="mb-3">
         <label for="type_id" class="form-label">Types</label>
         <select class="form-select form-select-lg @error('type_id') 'is-invalid' @enderror" name="type_id" id="type_id">
-            <option value="">Uncategorize</option>
+            <option value="">No Type</option>
 
-            @forelse ($categories as $type )
-            <!-- Check if the post has a type assigned or not                                    👇 -->
-            <option value="{{$type->id}}" {{ $type->id == old('type_id',  $post->type ? $post->type->id : '') ? 'selected' : '' }}>
+            @forelse ($types as $type )
+            <!-- Check if the project has a type assigned or not                                    👇 -->
+            <option value="{{$type->id}}" {{ $type->id == old('type_id',  $project->type ? $project->type->id : '') ? 'selected' : '' }}>
                 {{$type->name}}
             </option>
             @empty
-            <option value="">Sorry, no categories in the system.</option>
+            <option value="">Sorry, no types in the system.</option>
             @endforelse
 
         </select>
