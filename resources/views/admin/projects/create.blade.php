@@ -2,7 +2,7 @@
 
 @section('content')
 <h1>Create New Project</h1>
-
+@include('partials.error')
 <form action="{{route('admin.projects.store')}}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="mb-3">
@@ -10,6 +10,10 @@
         <input type="text" name="title" id="title" class="form-control" placeholder="" aria-describedby="titleHelper">
         <small id="titleHelper" class="text-muted">Add title with max 100 characters</small>
     </div>
+    @error('title')
+    <div class="alert alert-danger">{{$message}}</div>
+    @enderror
+
     <div class="mb-3">
         <label for="cover_image" class="form-label">Image</label>
         <input type="file" name="cover_image" id="cover_image" class="form-control @error('cover_image') is-invalid @enderror" placeholder="" aria-describedby="cover_imageHelper">
