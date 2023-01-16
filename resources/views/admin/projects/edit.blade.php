@@ -20,6 +20,23 @@
         </div>
     </div>
     <div class="mb-3">
+        <label for="type_id" class="form-label">Types</label>
+        <select class="form-select form-select-lg @error('type_id') 'is-invalid' @enderror" name="type_id" id="type_id">
+            <option value="">Uncategorize</option>
+
+            @forelse ($categories as $type )
+            <!-- Check if the post has a type assigned or not                                    👇 -->
+            <option value="{{$type->id}}" {{ $type->id == old('type_id',  $post->type ? $post->type->id : '') ? 'selected' : '' }}>
+                {{$type->name}}
+            </option>
+            @empty
+            <option value="">Sorry, no categories in the system.</option>
+            @endforelse
+
+        </select>
+    </div>
+
+    <div class="mb-3">
         <label for="description" class="form-label">Description</label>
         <textarea type="text" name="description" id="description" class="form-control @error('description') is-invalid @enderror" placeholder="" aria-describedby="descriptionHelper">{{old('description', $project->description)}}</textarea>
         <small id="descriptionHelper" class="text-muted">Add a description with max 300 characters</small>
